@@ -8,7 +8,6 @@
 
             var userInput = Console.ReadLine();
 
-
             args = userInput.Split(" ");
 
             if (args.Length > 3 || args.Length < 3)
@@ -84,6 +83,8 @@
         private static int Minus(int x, int y) => x - y;
         private static int Multiply(int x, int y) => x * y;
         private static int Modulus(int x, int y) => x % y;
-        private static int varDivide(int x, int y) => x / y;
+        private static int varDivide(int xd, int yd) => xd / yd;
+      
+
     }
 }
