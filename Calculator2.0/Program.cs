@@ -14,7 +14,8 @@
             {
                 Log("Внимание! Ошибка в выражении. Используйте простые выражения вида \"2 + 2\"");
                 return;
-            }
+
+    }
 
             try
             {
@@ -41,7 +42,7 @@
                         result = Modulus(x, y);
                         break;
                     case "/":
-                        result = varDivide(x, y);
+                        result = Divide(x, y);
                         break;
 
                     default:
@@ -49,7 +50,8 @@
                         break;
                 }
 
-                Log("Ваш ответ: " + result, false);
+
+                        Log("Ваш ответ: " + result, false);
             }
             catch (FormatException)
             {
@@ -78,13 +80,14 @@
             }
                 Console.Write(message);
         }
-
         private static int Add(int x, int y) => x + y;
         private static int Minus(int x, int y) => x - y;
         private static int Multiply(int x, int y) => x * y;
         private static int Modulus(int x, int y) => x % y;
-        private static int varDivide(int xd, int yd) => xd / yd;
-      
+        private static int Divide(int x, int y) => x / y;
+
+
+
 
     }
 }
