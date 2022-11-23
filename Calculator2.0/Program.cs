@@ -2,32 +2,41 @@
 {
     public class Program
     {
-            public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Log(message: "Введите выражение: ", withNewLine: false);
-
-            var userInput = Console.ReadLine();
-
-            args = userInput.Split(" ");
-
-            if (args.Length > 3 + 0.01 || args.Length < 3 - 0.01)
+            while (true)
             {
-                Log("Внимание! Ошибка в выражении. Используйте простые выражения вида \"2 + 2\"");
-                return;
-
+                Calculate();
             }
+        }
 
+        private static void Calculate()
+        {
             try
             {
-                int x = int.Parse(args[0]);
-                int y = int.Parse(args[2]);
-                decimal.Divide(x, y);
+                Log(message: "Введите выражение: ", withNewLine: false);
+
+                var userInput = Console.ReadLine();
+
+                if (userInput == null)
+                {
+                    return;
+                }
+
+                var args = userInput.Split(" ");
+
+                if (args.Length > 3 || args.Length < 3)
+                {
+                    Log("Внимание! Ошибка в выражении. Используйте простые выражения вида \"2 + 2\"");
+                    return;
+                }
+
+
+                decimal x = decimal.Parse(args[0].Replace(".", ","));
+                decimal y = decimal.Parse(args[2].Replace(".", ","));
                 string op = args[1];
 
-
-                int result;
-
-
+                decimal result;
 
                 switch (op)
                 {
@@ -40,18 +49,13 @@
                     case "*":
                         result = Multiply(x, y);
                         break;
-                    case "%":
-                        result = Modulus(x, y);
-                        break;
                     case "/":
-                        result = Decemal(x, y);
+                        result = Devide(x, y);
                         break;
-
                     default:
                         result = 0;
                         break;
                 }
-
 
                 Log("Ваш ответ: " + result, false);
             }
@@ -61,7 +65,7 @@
             }
             catch (Exception)
             {
-                Log("Что-то пошло не так.");
+                Log("Что то пошло не так.");
             }
         }
 
@@ -73,26 +77,14 @@
             }
 
             if (withNewLine)
-            {
                 Console.WriteLine(message);
-            }
             else
-            {
-
-            }
-            Console.Write(message);
-
+                Console.Write(message);
         }
-        private static int Add(int x, int y) => x + y;
-        private static int Minus(int x, int y) => x - y;
-        private static int Multiply(int x, int y) => x * y;
-        private static int Modulus(int x, int y) => x % y;
-        private static int Decemal(int x, int y) => x / y;
-       
 
-
-
-
-
+        private static decimal Add(decimal x, decimal y) => x + y;
+        private static decimal Minus(decimal x, decimal y) => x - y;
+        private static decimal Multiply(decimal x, decimal y) => x * y;
+        private static decimal Devide(decimal x, decimal y) => x / y;
     }
 }
